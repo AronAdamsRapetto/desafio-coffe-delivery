@@ -35,6 +35,7 @@ export const ShopLinkContainer = styled.div`
   background: ${props => props.theme["yellow-ligth"]};
   padding: 0.5rem;
   border-radius: 6px;
+  color: ${props => props.theme["yellow-dark"]};
 `
 
 export const ItemsCounter = styled.span`
