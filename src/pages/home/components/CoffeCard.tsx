@@ -1,24 +1,34 @@
-import { Minus, Plus, ShoppingCart } from "phosphor-react"
-import { CoffeCardContainer, DescriptionCoffe, PurchaseContainer, SelectionQuantityContainer, TagsContainer } from "./styles"
+import { Minus, Plus, ShoppingCart } from 'phosphor-react'
+import {
+  CoffeCardContainer,
+  DescriptionCoffe,
+  PurchaseContainer,
+  SelectionQuantityContainer,
+  TagsContainer,
+} from './styles'
 
 interface CoffeCardProps {
-    image: string
-    tags: string[]
-    name: string
-    description: string
-    price: number
+  image: string
+  tags: string[]
+  name: string
+  description: string
+  price: number
 }
 
-export function CoffeCard({ image, tags, name, description, price }: CoffeCardProps) {
+export function CoffeCard({
+  image,
+  tags,
+  name,
+  description,
+  price,
+}: CoffeCardProps) {
   return (
     <CoffeCardContainer>
-      <img src={image} />
+      <img src={image} alt="" />
       <TagsContainer>
-        {
-          tags.map((tag) => (
-            <span>{tag}</span>
-          ))
-        }
+        {tags.map((tag) => (
+          <span key={tag}>{tag}</span>
+        ))}
       </TagsContainer>
       <h3>{name}</h3>
       <DescriptionCoffe>{description}</DescriptionCoffe>

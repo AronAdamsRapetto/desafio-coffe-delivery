@@ -1,7 +1,7 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const LayoutContainer = styled.div`
   width: 100vw;
   display: flex;
-  flex-direction: column;  
+  flex-direction: column;
 `

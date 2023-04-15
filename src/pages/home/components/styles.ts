@@ -1,11 +1,11 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const CoffeCardContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 16rem;
   height: 19.375rem;
-  background: ${props => props.theme["base-card"]};
+  background: ${(props) => props.theme['base-card']};
   border-radius: 6px 36px;
   align-items: center;
   margin-right: 1.5rem;
@@ -18,7 +18,7 @@ export const CoffeCardContainer = styled.div`
   }
 
   h3 {
-    color: ${props => props.theme["base-subtitle"]};
+    color: ${(props) => props.theme['base-subtitle']};
     font-family: 'baloo 2', cursive;
     font-weight: bold;
     font-size: 1.25rem;
@@ -36,9 +36,9 @@ export const TagsContainer = styled.div`
     font-weight: bold;
     font-size: 0.625rem;
     line-height: 1.3;
-    color: ${props => props.theme["yellow-dark"]};
+    color: ${(props) => props.theme['yellow-dark']};
     padding: 0.25rem 0.5rem;
-    background: ${props => props.theme["yellow-ligth"]};
+    background: ${(props) => props.theme['yellow-ligth']};
     border-radius: 100px;
   }
 `
@@ -46,7 +46,7 @@ export const TagsContainer = styled.div`
 export const DescriptionCoffe = styled.span`
   font-size: 0.875rem;
   line-height: 1.3;
-  color: ${props => props.theme["base-label"]};
+  color: ${(props) => props.theme['base-label']};
   text-align: center;
   margin-top: 0.5rem;
   margin: 0.5rem 1.25rem 0;
@@ -64,7 +64,7 @@ export const PurchaseContainer = styled.div`
     font-weight: 800;
     font-size: 1.5rem;
     line-height: 1.3;
-    
+
     ::before {
       content: 'R$';
       font-weight: 400;
@@ -87,7 +87,7 @@ export const SelectionQuantityContainer = styled.div`
     align-items: center;
     padding: 0.5rem;
     gap: 0.25rem;
-    background: ${props => props.theme["base-button"]};
+    background: ${(props) => props.theme['base-button']};
     border-radius: 6px;
 
     span {
@@ -103,29 +103,29 @@ export const SelectionQuantityContainer = styled.div`
     }
 
     svg {
-      color: ${props => props.theme.purple};
+      color: ${(props) => props.theme.purple};
       font-weight: bold;
 
       :hover {
-        color: ${props => props.theme["purple-dark"]};
+        color: ${(props) => props.theme['purple-dark']};
         cursor: pointer;
       }
     }
   }
 
   button {
-      border: 0;
-      display: flex;
-      padding: 0.5rem;
-      border-radius: 6px;
-      background: ${props => props.theme["purple-dark"]};
-      color: ${props => props.theme.white};
-      justify-content: center;
-      align-items: center;
+    border: 0;
+    display: flex;
+    padding: 0.5rem;
+    border-radius: 6px;
+    background: ${(props) => props.theme['purple-dark']};
+    color: ${(props) => props.theme.white};
+    justify-content: center;
+    align-items: center;
 
-      :hover {
-        background: ${props => props.theme.purple};
-        cursor: pointer;
-      }
+    :hover {
+      background: ${(props) => props.theme.purple};
+      cursor: pointer;
     }
+  }
 `

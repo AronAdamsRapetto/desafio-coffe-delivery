@@ -1,5 +1,17 @@
 import imagemDaHome from '../../assets/imagem-da-home.svg'
-import { BulletPoint, BulletPointsContainer, BulletPointsSection, CafeListContainer, CoffeIconContainer, DeliveryIconContainer, HomeContainer, IntroductionContainer, ShopIconContainer, TimerIconContainer, WelcomeContainer } from './styles'
+import {
+  BulletPoint,
+  BulletPointsContainer,
+  BulletPointsSection,
+  CafeListContainer,
+  CoffeIconContainer,
+  DeliveryIconContainer,
+  HomeContainer,
+  IntroductionContainer,
+  ShopIconContainer,
+  TimerIconContainer,
+  WelcomeContainer,
+} from './styles'
 import { Coffee, Package, ShoppingCart, Timer } from 'phosphor-react'
 import { coffeData } from '../../data'
 import { CoffeCard } from './components/CoffeCard'
@@ -11,12 +23,15 @@ export function Home() {
         <div>
           <IntroductionContainer>
             <h1>Encontre o café perfeito para qualquer hora do dia</h1>
-            <p>Com o Coffee Delivery você recebe seu café onde estiver, a qualquer hora</p>
+            <p>
+              Com o Coffee Delivery você recebe seu café onde estiver, a
+              qualquer hora
+            </p>
           </IntroductionContainer>
           <BulletPointsContainer>
             <BulletPointsSection>
               <BulletPoint>
-                <ShopIconContainer> 
+                <ShopIconContainer>
                   <ShoppingCart size={16} />
                 </ShopIconContainer>
                 <span>Compra simples e segura</span>
@@ -44,20 +59,15 @@ export function Home() {
             </BulletPointsSection>
           </BulletPointsContainer>
         </div>
-        <img src={imagemDaHome} />
+        <img src={imagemDaHome} alt="" />
       </WelcomeContainer>
       <CafeListContainer>
         <h2>Nossos cafés</h2>
         <div>
-          {
-            coffeData.map((coffe) => (
-              <CoffeCard 
-                key={coffe.id}
-                { ...coffe }
-              />
-            ))
-          }
-          </div>
+          {coffeData.map((coffe) => (
+            <CoffeCard key={coffe.id} {...coffe} />
+          ))}
+        </div>
       </CafeListContainer>
     </HomeContainer>
   )

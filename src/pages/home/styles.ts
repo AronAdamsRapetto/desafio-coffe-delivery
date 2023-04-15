@@ -16,7 +16,7 @@ export const IntroductionContainer = styled.div`
   max-width: 588px;
 
   h1 {
-    color: ${props => props.theme['base-title']};
+    color: ${(props) => props.theme['base-title']};
     font-family: 'Baloo 2', cursive;
     font-weight: 800;
     font-size: 3rem;
@@ -26,7 +26,7 @@ export const IntroductionContainer = styled.div`
   p {
     font-size: 1.25rem;
     line-height: 1.3;
-    color: ${props => props.theme['base-subtitle']};
+    color: ${(props) => props.theme['base-subtitle']};
   }
 `
 
@@ -61,21 +61,21 @@ const BaseIconContainer = styled.div`
   min-height: 32px;
   min-width: 32px;
   border-radius: 50%;
-  color: ${props => props.theme.white};
+  color: ${(props) => props.theme.white};
 `
 
 export const ShopIconContainer = styled(BaseIconContainer)`
-  background-color: ${props => props.theme['yellow-dark']};
+  background-color: ${(props) => props.theme['yellow-dark']};
 `
 
 export const TimerIconContainer = styled(BaseIconContainer)`
-  background-color: ${props => props.theme.yellow};
+  background-color: ${(props) => props.theme.yellow};
 `
 export const DeliveryIconContainer = styled(BaseIconContainer)`
-  background-color: ${props => props.theme['base-text']};
+  background-color: ${(props) => props.theme['base-text']};
 `
 export const CoffeIconContainer = styled(BaseIconContainer)`
-  background-color: ${props => props.theme.purple};
+  background-color: ${(props) => props.theme.purple};
 `
 
 export const CafeListContainer = styled.section`
@@ -90,7 +90,7 @@ export const CafeListContainer = styled.section`
     font-weight: 800;
     font-size: 2rem;
     line-height: 1.3;
-    color: ${props => props.theme['base-subtitle']};
+    color: ${(props) => props.theme['base-subtitle']};
   }
 
   div {
