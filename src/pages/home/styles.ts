@@ -8,8 +8,11 @@ export const HomeContainer = styled.main`
 
 export const WelcomeContainer = styled.section`
   display: flex;
+  min-width: 1120px;
   margin: auto;
+  justify-content: space-between;
   gap: 3.5rem;
+  margin-bottom: 6.8125rem;
 `
 
 export const IntroductionContainer = styled.div`
@@ -80,4 +83,10 @@ export const DeliveryIconContainer = styled(BaseIconContainer)`
 `
 export const CoffeIconContainer = styled(BaseIconContainer)`
   background-color: ${props => props.theme.purple};
+`
+
+export const CafeListContainer = styled.section`
+  display: flex;
+  max-width: 1120px;
+  padding: 0 10rem;
 `

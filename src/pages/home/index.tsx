@@ -1,7 +1,7 @@
 import imagemDaHome from '../../assets/imagem-da-home.svg'
 import deliveryBoxIcon from '../../assets/delivery-box-Icon.svg'
 import timerIcon from '../../assets/timer-Icon.svg'
-import { BulletPoint, BulletPointsContainer, BulletPointsSection, CoffeIconContainer, DeliveryIconContainer, HomeContainer, IntroductionContainer, ShopIconContainer, TimerIconContainer, WelcomeContainer } from './styles'
+import { BulletPoint, BulletPointsContainer, BulletPointsSection, CafeListContainer, CoffeIconContainer, DeliveryIconContainer, HomeContainer, IntroductionContainer, ShopIconContainer, TimerIconContainer, WelcomeContainer } from './styles'
 import { Coffee, Package, ShoppingCart, Timer } from 'phosphor-react'
 
 export function Home() {
@@ -46,6 +46,10 @@ export function Home() {
         </div>
         <img src={imagemDaHome} />
       </WelcomeContainer>
+      <CafeListContainer>
+        <h2>Nossos cafés</h2>
+        <div></div>
+      </CafeListContainer>
     </HomeContainer>
   )
 }
