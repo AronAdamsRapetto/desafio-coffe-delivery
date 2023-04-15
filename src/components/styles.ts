@@ -4,7 +4,7 @@ export const HeaderContainer = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 2rem 10rem;
+  margin: 2rem 5rem;
   background: ${props => props.theme.background};
 `
 
@@ -36,6 +36,10 @@ export const ShopLinkContainer = styled.div`
   padding: 0.5rem;
   border-radius: 6px;
   color: ${props => props.theme["yellow-dark"]};
+
+  :hover {
+    cursor: pointer;
+  }
 `
 
 export const ItemsCounter = styled.span`

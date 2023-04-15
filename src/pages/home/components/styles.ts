@@ -97,13 +97,19 @@ export const SelectionQuantityContainer = styled.div`
       line-height: 1.3;
 
       ::before {
-        content: ''
+        content: '';
+        margin-right: 0;
       }
     }
 
     svg {
       color: ${props => props.theme.purple};
       font-weight: bold;
+
+      :hover {
+        color: ${props => props.theme["purple-dark"]};
+        cursor: pointer;
+      }
     }
   }
 
@@ -116,5 +122,10 @@ export const SelectionQuantityContainer = styled.div`
       color: ${props => props.theme.white};
       justify-content: center;
       align-items: center;
+
+      :hover {
+        background: ${props => props.theme.purple};
+        cursor: pointer;
+      }
     }
 `
