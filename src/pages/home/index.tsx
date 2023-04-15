@@ -1,8 +1,8 @@
 import imagemDaHome from '../../assets/imagem-da-home.svg'
-import deliveryBoxIcon from '../../assets/delivery-box-Icon.svg'
-import timerIcon from '../../assets/timer-Icon.svg'
 import { BulletPoint, BulletPointsContainer, BulletPointsSection, CafeListContainer, CoffeIconContainer, DeliveryIconContainer, HomeContainer, IntroductionContainer, ShopIconContainer, TimerIconContainer, WelcomeContainer } from './styles'
 import { Coffee, Package, ShoppingCart, Timer } from 'phosphor-react'
+import { coffeData } from '../../data'
+import { CoffeCard } from './components/CoffeCard'
 
 export function Home() {
   return (
@@ -37,7 +37,7 @@ export function Home() {
               </BulletPoint>
               <BulletPoint>
                 <CoffeIconContainer>
-                <Coffee size={16} />
+                  <Coffee size={16} />
                 </CoffeIconContainer>
                 <span>O café chega fesquinho até você</span>
               </BulletPoint>
@@ -48,7 +48,16 @@ export function Home() {
       </WelcomeContainer>
       <CafeListContainer>
         <h2>Nossos cafés</h2>
-        <div></div>
+        <div>
+          {
+            coffeData.map((coffe) => (
+              <CoffeCard 
+                key={coffe.id}
+                { ...coffe }
+              />
+            ))
+          }
+          </div>
       </CafeListContainer>
     </HomeContainer>
   )
