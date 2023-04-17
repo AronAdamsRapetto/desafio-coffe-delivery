@@ -4,7 +4,7 @@ export const HeaderContainer = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 2rem 5rem;
+  margin: 2rem 0;
   background: ${(props) => props.theme.background};
 `
 

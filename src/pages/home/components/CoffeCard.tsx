@@ -6,6 +6,8 @@ import {
   SelectionQuantityContainer,
   TagsContainer,
 } from './styles'
+import { useContext, useState } from 'react'
+import { CoffeContext } from '../../../context/CoffeContext'
 
 interface CoffeCardProps {
   image: string
@@ -13,6 +15,7 @@ interface CoffeCardProps {
   name: string
   description: string
   price: number
+  id: number
 }
 
 export function CoffeCard({
@@ -21,7 +24,33 @@ export function CoffeCard({
   name,
   description,
   price,
+  id,
 }: CoffeCardProps) {
+  const [shopQuantity, setShopQuantity] = useState(1)
+  const { addItemToShoppingCart } = useContext(CoffeContext)
+
+  const handleAddItem = () => {
+    const newItem = {
+      id,
+      name,
+      image,
+      price,
+      qtd: shopQuantity,
+    }
+
+    addItemToShoppingCart(newItem)
+  }
+
+  const handleIncreaseShopQuantity = () => {
+    setShopQuantity((state) => state + 1)
+  }
+
+  const handleDecreaseShopQuantoty = () => {
+    if (shopQuantity > 1) {
+      setShopQuantity((state) => state - 1)
+    }
+  }
+
   return (
     <CoffeCardContainer>
       <img src={image} alt="" />
@@ -36,11 +65,11 @@ export function CoffeCard({
         <span>{price.toFixed(2)}</span>
         <SelectionQuantityContainer>
           <div>
-            <Minus size={14} />
-            <span>1</span>
-            <Plus size={14} />
+            <Minus onClick={handleDecreaseShopQuantoty} size={14} />
+            <span>{shopQuantity}</span>
+            <Plus onClick={handleIncreaseShopQuantity} size={14} />
           </div>
-          <button type="button">
+          <button onClick={handleAddItem} type="button">
             <ShoppingCart size={22} />
           </button>
         </SelectionQuantityContainer>

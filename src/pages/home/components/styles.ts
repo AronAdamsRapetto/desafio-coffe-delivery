@@ -57,7 +57,7 @@ export const PurchaseContainer = styled.div`
   margin: 2.0625rem 1.5rem 1.25rem;
   justify-content: space-between;
   align-items: center;
-  gap: 1.8125rem;
+  gap: 1.3rem;
 
   span {
     font-family: 'Baloo 2', cursive;
@@ -86,9 +86,10 @@ export const SelectionQuantityContainer = styled.div`
     justify-content: center;
     align-items: center;
     padding: 0.5rem;
-    gap: 0.25rem;
+    gap: 0.5rem;
     background: ${(props) => props.theme['base-button']};
     border-radius: 6px;
+    width: 4.875rem;
 
     span {
       font-family: 'Roboto', sans-serif;
@@ -116,7 +117,7 @@ export const SelectionQuantityContainer = styled.div`
   button {
     border: 0;
     display: flex;
-    padding: 0.5rem;
+    padding: 0.4rem;
     border-radius: 6px;
     background: ${(props) => props.theme['purple-dark']};
     color: ${(props) => props.theme.white};

@@ -3,13 +3,14 @@ import styled from 'styled-components'
 export const HomeContainer = styled.main`
   display: flex;
   flex-direction: column;
-  margin: 5.875rem 5rem 0;
+  margin: 5.875rem 0;
 `
 
 export const WelcomeContainer = styled.section`
   display: flex;
+  justify-content: space-between;
   gap: 3.5rem;
-  margin: 0 auto 4.5rem auto;
+  margin-bottom: 4.5rem;
 `
 
 export const IntroductionContainer = styled.div`
@@ -81,7 +82,6 @@ export const CoffeIconContainer = styled(BaseIconContainer)`
 export const CafeListContainer = styled.section`
   display: flex;
   flex-direction: column;
-  max-width: 1120px;
   margin: 0 auto 4.5rem auto;
 
   h2 {

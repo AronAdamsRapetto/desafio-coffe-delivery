@@ -8,8 +8,14 @@ import {
   MenuContainer,
   ShopLinkContainer,
 } from './styles'
+import { useContext } from 'react'
+import { CoffeContext } from '../context/CoffeContext'
+import { NavLink } from 'react-router-dom'
 
 export function Header() {
+  const { shoppingCart } = useContext(CoffeContext)
+  const itemsCounter = shoppingCart.reduce((acc, { qtd }) => (acc += qtd), 0)
+
   return (
     <HeaderContainer>
       <img src={coffeDeliveryLogo} alt="" />
@@ -18,10 +24,12 @@ export function Header() {
           <img src={mapPinFill} alt="" />
           <span>Porto Alegre, RS</span>
         </LocaleContainer>
-        <ShopLinkContainer>
-          <ShoppingCart size={22} />
-        </ShopLinkContainer>
-        <ItemsCounter>1</ItemsCounter>
+        <NavLink to="/checkout">
+          <ShopLinkContainer>
+            <ShoppingCart size={22} />
+          </ShopLinkContainer>
+        </NavLink>
+        {itemsCounter ? <ItemsCounter>{itemsCounter}</ItemsCounter> : null}
       </MenuContainer>
     </HeaderContainer>
   )
