@@ -25,9 +25,10 @@ interface DeliveryInformations {
 
 interface CoffeContextType {
   shoppingCart: CartItem[]
-  addItemToShoppingCart: (newItem: CartItem) => void
+  updateShoppingCart: (newItem: CartItem) => void
   deliveryInfo: DeliveryInformations
   updateDeliveryInformation: (newAddress: DeliveryInformations) => void
+  removeCoffeFromCart: (id: number) => void
 }
 
 export const CoffeContext = createContext({} as CoffeContextType)
@@ -38,7 +39,7 @@ export function CoffeContextProvider({ children }: ContextProviderProps) {
     {} as DeliveryInformations,
   )
 
-  const addItemToShoppingCart = (newItem: CartItem) => {
+  const updateShoppingCart = (newItem: CartItem) => {
     const isNewItemExistInCart = shoppingCart.find(
       ({ id }) => id === newItem.id,
     )
@@ -55,6 +56,10 @@ export function CoffeContextProvider({ children }: ContextProviderProps) {
     }
   }
 
+  const removeCoffeFromCart = (idItem: number) => {
+    setShoppingCart((state) => state.filter(({ id }) => id !== idItem))
+  }
+
   const updateDeliveryInformation = (
     newDeliveryInformation: DeliveryInformations,
   ) => {
@@ -65,9 +70,10 @@ export function CoffeContextProvider({ children }: ContextProviderProps) {
     <CoffeContext.Provider
       value={{
         shoppingCart,
-        addItemToShoppingCart,
+        updateShoppingCart,
         deliveryInfo,
         updateDeliveryInformation,
+        removeCoffeFromCart,
       }}
     >
       {children}
