@@ -70,7 +70,9 @@ export function ShopSummary() {
             <span>{`R$ ${(totalItemsPrice + 3.5).toFixed(2)}`}</span>
           </TotalValueContainer>
         </ValuesContainer>
-        <SubmitButton type="submit">CONFIRMAR PEDIDO</SubmitButton>
+        <SubmitButton type="submit" form="DeliveryForm">
+          CONFIRMAR PEDIDO
+        </SubmitButton>
       </SummaryContainer>
     </ShopSummaryContainer>
   )

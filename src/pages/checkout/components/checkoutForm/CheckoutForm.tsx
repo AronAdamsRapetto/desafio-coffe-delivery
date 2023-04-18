@@ -6,7 +6,9 @@ import {
   Money,
 } from 'phosphor-react'
 import * as styled from './styles'
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
+import { useForm } from 'react-hook-form'
+import { CoffeContext } from '../../../../context/CoffeContext'
 
 interface EventTargetWithInnerText extends EventTarget {
   innerText: string
@@ -19,11 +21,19 @@ export interface SelectPaymentEvent
 
 export function CheckoutForm() {
   const [paymentOption, setPaymentOption] = useState('')
+  const { updateDeliveryInformation } = useContext(CoffeContext)
+  const { register, handleSubmit } = useForm()
 
   const handleSelectPaymentOption = ({
     target: { innerText },
   }: SelectPaymentEvent) => {
     setPaymentOption(innerText)
+  }
+
+  const setDeliveryAddress = (data: any) => {
+    if (paymentOption) {
+      updateDeliveryInformation({ payment: paymentOption, ...data })
+    }
   }
 
   return (
@@ -38,14 +48,51 @@ export function CheckoutForm() {
           </div>
         </styled.InstructionAddressContainer>
 
-        <styled.FormContainer>
-          <styled.CepInput type="text" placeholder="CEP" />
-          <styled.StreetInput type="text" placeholder="Rua" />
-          <styled.NumberInput type="text" placeholder="Número" />
-          <styled.ComplementInput type="text" placeholder="Complemento" />
-          <styled.DistrictInput type="text" placeholder="Bairro" />
-          <styled.CityInput type="text" placeholder="Cidade" />
-          <styled.StateInput type="text" placeholder="UF" />
+        <styled.FormContainer
+          id="DeliveryForm"
+          onSubmit={handleSubmit(setDeliveryAddress)}
+        >
+          <styled.CepInput
+            type="text"
+            required
+            placeholder="CEP"
+            {...register('cep')}
+          />
+          <styled.StreetInput
+            type="text"
+            required
+            placeholder="Rua"
+            {...register('street')}
+          />
+          <styled.NumberInput
+            type="text"
+            required
+            placeholder="Número"
+            {...register('number')}
+          />
+          <styled.ComplementInput
+            type="text"
+            placeholder="Complemento"
+            {...register('complement')}
+          />
+          <styled.DistrictInput
+            type="text"
+            required
+            placeholder="Bairro"
+            {...register('district')}
+          />
+          <styled.CityInput
+            type="text"
+            required
+            placeholder="Cidade"
+            {...register('city')}
+          />
+          <styled.StateInput
+            type="text"
+            required
+            placeholder="UF"
+            {...register('uf')}
+          />
         </styled.FormContainer>
       </styled.AddressInfoContainer>
 
