@@ -65,9 +65,13 @@ export function CoffeCard({
         <span>{price.toFixed(2)}</span>
         <SelectionQuantityContainer>
           <div>
-            <Minus onClick={handleDecreaseShopQuantoty} size={14} />
+            <button type="button" onClick={handleDecreaseShopQuantoty}>
+              <Minus size={14} />
+            </button>
             <span>{shopQuantity}</span>
-            <Plus onClick={handleIncreaseShopQuantity} size={14} />
+            <button type="button" onClick={handleIncreaseShopQuantity}>
+              <Plus size={14} />
+            </button>
           </div>
           <button onClick={handleAddItem} type="button">
             <ShoppingCart size={22} />
