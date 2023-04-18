@@ -1,11 +1,11 @@
-import { Route, Routes } from "react-router-dom"
-import { Home } from "./pages/Home"
-import { Checkout } from "./pages/Checkout"
-import { Feedback } from "./pages/Feedback"
-import { DefaultLayout } from "./layouts/DefaultLayout"
+import { Route, Routes } from 'react-router-dom'
+import { Home } from './pages/home'
+import { Checkout } from './pages/Checkout'
+import { Feedback } from './pages/Feedback'
+import { DefaultLayout } from './layouts/DefaultLayout'
 
 export function Router() {
-  return(
+  return (
     <Routes>
       <Route path="/" element={<DefaultLayout />}>
         <Route path="/" element={<Home />} />
