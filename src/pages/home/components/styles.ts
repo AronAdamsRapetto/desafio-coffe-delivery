@@ -103,9 +103,13 @@ export const SelectionQuantityContainer = styled.div`
       }
     }
 
-    svg {
+    > button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: none;
+      background: transparent;
       color: ${(props) => props.theme.purple};
-      font-weight: bold;
 
       :hover {
         color: ${(props) => props.theme['purple-dark']};
@@ -114,7 +118,7 @@ export const SelectionQuantityContainer = styled.div`
     }
   }
 
-  button {
+  > button {
     border: 0;
     display: flex;
     padding: 0.4rem;

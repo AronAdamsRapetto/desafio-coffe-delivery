@@ -12,17 +12,34 @@ interface CartItem {
   qtd: number
 }
 
+interface DeliveryInformations {
+  cep: string
+  street: string
+  number: string
+  complement?: string
+  district: string
+  city: string
+  uf: string
+  payment: string
+}
+
 interface CoffeContextType {
   shoppingCart: CartItem[]
-  addItemToShoppingCart: (newItem: CartItem) => void
+  updateShoppingCart: (newItem: CartItem) => void
+  deliveryInfo: DeliveryInformations
+  updateDeliveryInformation: (newAddress: DeliveryInformations) => void
+  removeCoffeFromCart: (id: number) => void
 }
 
 export const CoffeContext = createContext({} as CoffeContextType)
 
 export function CoffeContextProvider({ children }: ContextProviderProps) {
   const [shoppingCart, setShoppingCart] = useState<CartItem[]>([])
+  const [deliveryInfo, setDeliveryInfo] = useState<DeliveryInformations>(
+    {} as DeliveryInformations,
+  )
 
-  const addItemToShoppingCart = (newItem: CartItem) => {
+  const updateShoppingCart = (newItem: CartItem) => {
     const isNewItemExistInCart = shoppingCart.find(
       ({ id }) => id === newItem.id,
     )
@@ -39,8 +56,26 @@ export function CoffeContextProvider({ children }: ContextProviderProps) {
     }
   }
 
+  const removeCoffeFromCart = (idItem: number) => {
+    setShoppingCart((state) => state.filter(({ id }) => id !== idItem))
+  }
+
+  const updateDeliveryInformation = (
+    newDeliveryInformation: DeliveryInformations,
+  ) => {
+    setDeliveryInfo((_state) => ({ ...newDeliveryInformation }))
+  }
+
   return (
-    <CoffeContext.Provider value={{ shoppingCart, addItemToShoppingCart }}>
+    <CoffeContext.Provider
+      value={{
+        shoppingCart,
+        updateShoppingCart,
+        deliveryInfo,
+        updateDeliveryInformation,
+        removeCoffeFromCart,
+      }}
+    >
       {children}
     </CoffeContext.Provider>
   )
