@@ -10,10 +10,11 @@ import {
 } from './styles'
 import { useContext } from 'react'
 import { CoffeContext } from '../context/CoffeContext'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useLocation } from 'react-router-dom'
 
 export function Header() {
   const { shoppingCart } = useContext(CoffeContext)
+  const { pathname } = useLocation()
   const itemsCounter = shoppingCart.reduce((acc, { qtd }) => (acc += qtd), 0)
 
   return (
@@ -24,7 +25,7 @@ export function Header() {
           <img src={mapPinFill} alt="" />
           <span>Porto Alegre, RS</span>
         </LocaleContainer>
-        <NavLink to="/checkout">
+        <NavLink to={pathname === '/' ? '/checkout' : '/'}>
           <ShopLinkContainer>
             <ShoppingCart size={22} />
           </ShopLinkContainer>
