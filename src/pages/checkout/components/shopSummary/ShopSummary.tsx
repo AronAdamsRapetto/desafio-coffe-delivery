@@ -1,7 +1,16 @@
 import { useContext } from 'react'
 import {
+  CardCoffe,
+  CardInformationContainer,
+  DeliveryValueContainer,
+  QuantityControllContainer,
+  RemoveProductButton,
+  Separator,
   ShopSummaryContainer,
+  SubmitButton,
   SummaryContainer,
+  TotalItemsValueContainer,
+  TotalValueContainer,
   ValuesContainer,
 } from './styles'
 import { CoffeContext } from '../../../../context/CoffeContext'
@@ -10,48 +19,58 @@ import { Minus, Plus, Trash } from 'phosphor-react'
 export function ShopSummary() {
   const { shoppingCart } = useContext(CoffeContext)
 
+  const totalItemsPrice = shoppingCart.reduce(
+    (priceAcc, { price, qtd }) => (priceAcc += price * qtd),
+    0,
+  )
   return (
     <ShopSummaryContainer>
       <h4>Cafés selecionados</h4>
       <SummaryContainer>
         {shoppingCart.map(({ name, image, price, qtd, id }) => (
-          <div key={id}>
-            <img src={image} alt="" />
-            <div>
-              <span>{name}</span>
+          <>
+            <CardCoffe key={id}>
               <div>
-                <div>
-                  <button>
-                    <Minus size={14} />
-                  </button>
-                  <span>{qtd}</span>
-                  <button>
-                    <Plus size={14} />
-                  </button>
-                </div>
-                <button>
-                  <Trash size={16} />
-                  Remover
-                </button>
+                <img src={image} alt="" />
+                <CardInformationContainer>
+                  <span>{name}</span>
+                  <div>
+                    <QuantityControllContainer>
+                      <button>
+                        <Minus size={14} />
+                      </button>
+                      <span>{qtd}</span>
+                      <button>
+                        <Plus size={14} />
+                      </button>
+                    </QuantityControllContainer>
+                    <RemoveProductButton>
+                      <Trash size={16} />
+                      Remover
+                    </RemoveProductButton>
+                  </div>
+                </CardInformationContainer>
               </div>
-            </div>
-            <span>{`R$ ${price.toFixed(2)}`}</span>
-          </div>
+              <span>{`R$ ${price.toFixed(2)}`}</span>
+            </CardCoffe>
+            <Separator />
+          </>
         ))}
         <ValuesContainer>
-          <div>
+          <TotalItemsValueContainer>
             <span>Total de itens</span>
-            <span>price</span>
-          </div>
-          <div>
+            <span>{`R$ ${totalItemsPrice.toFixed(2)}`}</span>
+          </TotalItemsValueContainer>
+          <DeliveryValueContainer>
             <span>Entrega</span>
-            <span>price</span>
-          </div>
-          <div>
+            <span>R$ 3.50</span>
+          </DeliveryValueContainer>
+          <TotalValueContainer>
             <span>Total</span>
-            <span>price</span>
-          </div>
+            <span>{`R$ ${(totalItemsPrice + 3.5).toFixed(2)}`}</span>
+          </TotalValueContainer>
         </ValuesContainer>
+        <SubmitButton type="submit">CONFIRMAR PEDIDO</SubmitButton>
       </SummaryContainer>
     </ShopSummaryContainer>
   )

@@ -8,13 +8,13 @@ import {
 import * as styled from './styles'
 import React, { useState } from 'react'
 
-interface test extends EventTarget {
+interface EventTargetWithInnerText extends EventTarget {
   innerText: string
 }
 
 export interface SelectPaymentEvent
   extends React.MouseEventHandler<HTMLElement> {
-  target: test
+  target: EventTargetWithInnerText
 }
 
 export function CheckoutForm() {

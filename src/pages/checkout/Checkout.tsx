@@ -7,7 +7,6 @@ export function Checkout() {
     <CheckoutPageContainer>
       <CheckoutForm />
       <ShopSummary />
-      {/* Sub-componente de checkout (cards dos produtos) */}
     </CheckoutPageContainer>
   )
 }
