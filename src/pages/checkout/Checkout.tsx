@@ -1,5 +1,5 @@
-import { CheckoutForm } from './components/checkoutForm/CheckoutForm'
-import { ShopSummary } from './components/shopSummary/ShopSummary'
+import { CheckoutForm } from './components/checkoutForm'
+import { ShopSummary } from './components/shopSummary'
 import { CheckoutPageContainer } from './styles'
 
 export function Checkout() {

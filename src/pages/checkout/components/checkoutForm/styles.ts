@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components'
-import { SelectPaymentEvent } from './CheckoutForm'
+import { SelectPaymentEvent } from '.'
 
 interface PaymentOptionProps {
   selected: boolean

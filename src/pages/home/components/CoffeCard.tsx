@@ -27,7 +27,7 @@ export function CoffeCard({
   id,
 }: CoffeCardProps) {
   const [shopQuantity, setShopQuantity] = useState(1)
-  const { addItemToShoppingCart } = useContext(CoffeContext)
+  const { updateShoppingCart } = useContext(CoffeContext)
 
   const handleAddItem = () => {
     const newItem = {
@@ -38,7 +38,7 @@ export function CoffeCard({
       qtd: shopQuantity,
     }
 
-    addItemToShoppingCart(newItem)
+    updateShoppingCart(newItem)
   }
 
   const handleIncreaseShopQuantity = () => {

@@ -8,6 +8,7 @@ import {
 import * as styled from './styles'
 import React, { useContext, useState } from 'react'
 import { useForm } from 'react-hook-form'
+import { useNavigate } from 'react-router-dom'
 import { CoffeContext } from '../../../../context/CoffeContext'
 
 interface EventTargetWithInnerText extends EventTarget {
@@ -23,6 +24,7 @@ export function CheckoutForm() {
   const [paymentOption, setPaymentOption] = useState('')
   const { updateDeliveryInformation } = useContext(CoffeContext)
   const { register, handleSubmit } = useForm()
+  const navigate = useNavigate()
 
   const handleSelectPaymentOption = ({
     target: { innerText },
@@ -30,9 +32,10 @@ export function CheckoutForm() {
     setPaymentOption(innerText)
   }
 
-  const setDeliveryAddress = (data: any) => {
+  const submitDeliveryAddress = (data: any) => {
     if (paymentOption) {
       updateDeliveryInformation({ payment: paymentOption, ...data })
+      navigate('/feedback')
     }
   }
 
@@ -50,7 +53,7 @@ export function CheckoutForm() {
 
         <styled.FormContainer
           id="DeliveryForm"
-          onSubmit={handleSubmit(setDeliveryAddress)}
+          onSubmit={handleSubmit(submitDeliveryAddress)}
         >
           <styled.CepInput
             type="text"

@@ -1,10 +1,10 @@
 import { useContext } from 'react'
+import { CoffeContext } from '../../../../context/CoffeContext'
+import { ShoppingCart } from 'phosphor-react'
+import { CheckoutCoffeCard } from '../checkoutCoffeCard'
 import {
-  CardCoffe,
-  CardInformationContainer,
   DeliveryValueContainer,
-  QuantityControllContainer,
-  RemoveProductButton,
+  EmptyCarContainer,
   Separator,
   ShopSummaryContainer,
   SubmitButton,
@@ -13,49 +13,33 @@ import {
   TotalValueContainer,
   ValuesContainer,
 } from './styles'
-import { CoffeContext } from '../../../../context/CoffeContext'
-import { Minus, Plus, Trash } from 'phosphor-react'
 
 export function ShopSummary() {
   const { shoppingCart } = useContext(CoffeContext)
 
+  const isSubmitButtonDisabled = shoppingCart.length === 0
   const totalItemsPrice = shoppingCart.reduce(
     (priceAcc, { price, qtd }) => (priceAcc += price * qtd),
     0,
   )
+
   return (
     <ShopSummaryContainer>
       <h4>Cafés selecionados</h4>
       <SummaryContainer>
-        {shoppingCart.map(({ name, image, price, qtd, id }) => (
+        {shoppingCart.length !== 0 ? (
+          shoppingCart.map((coffe) => (
+            <CheckoutCoffeCard {...coffe} key={coffe.id} />
+          ))
+        ) : (
           <>
-            <CardCoffe key={id}>
-              <div>
-                <img src={image} alt="" />
-                <CardInformationContainer>
-                  <span>{name}</span>
-                  <div>
-                    <QuantityControllContainer>
-                      <button>
-                        <Minus size={14} />
-                      </button>
-                      <span>{qtd}</span>
-                      <button>
-                        <Plus size={14} />
-                      </button>
-                    </QuantityControllContainer>
-                    <RemoveProductButton>
-                      <Trash size={16} />
-                      Remover
-                    </RemoveProductButton>
-                  </div>
-                </CardInformationContainer>
-              </div>
-              <span>{`R$ ${price.toFixed(2)}`}</span>
-            </CardCoffe>
+            <EmptyCarContainer>
+              <ShoppingCart size={32} />
+              <h3>Carrinho Vazio</h3>
+            </EmptyCarContainer>
             <Separator />
           </>
-        ))}
+        )}
         <ValuesContainer>
           <TotalItemsValueContainer>
             <span>Total de itens</span>
@@ -70,7 +54,11 @@ export function ShopSummary() {
             <span>{`R$ ${(totalItemsPrice + 3.5).toFixed(2)}`}</span>
           </TotalValueContainer>
         </ValuesContainer>
-        <SubmitButton type="submit" form="DeliveryForm">
+        <SubmitButton
+          disabled={isSubmitButtonDisabled}
+          type="submit"
+          form="DeliveryForm"
+        >
           CONFIRMAR PEDIDO
         </SubmitButton>
       </SummaryContainer>
