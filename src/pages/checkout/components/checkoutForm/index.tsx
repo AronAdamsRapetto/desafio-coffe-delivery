@@ -30,7 +30,7 @@ type PaymentOptionType = keyof typeof PaymentMap
 
 export function CheckoutForm() {
   const [paymentOption, setPaymentOption] = useState<PaymentOptionType>('' as PaymentOptionType)
-  const { updateDeliveryInformation } = useContext(CoffeContext)
+  const { updateDeliveryInformation, clearCart } = useContext(CoffeContext)
   const { register, handleSubmit } = useForm()
   const navigate = useNavigate()
 
@@ -43,6 +43,7 @@ export function CheckoutForm() {
   const submitDeliveryAddress = (data: any) => {
     if (paymentOption) {
       updateDeliveryInformation({ payment: PaymentMap[paymentOption], ...data })
+      clearCart()
       navigate('/feedback')
     }
   }
