@@ -1,4 +1,4 @@
-import imagemDaHome from '../../assets/imagem-da-home.svg'
+import imagemDaHome from '../../assets/home-image.svg'
 import {
   BulletPoint,
   BulletPointsContainer,

@@ -12,7 +12,7 @@ import { useNavigate } from 'react-router-dom'
 import { CoffeContext } from '../../../../context/CoffeContext'
 
 interface EventTargetWithInnerText extends EventTarget {
-  innerText: string
+  innerText: PaymentOptionType
 }
 
 export interface SelectPaymentEvent
@@ -20,8 +20,16 @@ export interface SelectPaymentEvent
   target: EventTargetWithInnerText
 }
 
+enum PaymentMap {
+  'CARTÃO DE CRÉDITO' = 'Cartão de Crédito',
+  'CARTÃO DE DÉBITO' = 'Cartão de Débito',
+  'DINHEIRO' = 'Dinheiro',
+}
+
+type PaymentOptionType = keyof typeof PaymentMap
+
 export function CheckoutForm() {
-  const [paymentOption, setPaymentOption] = useState('')
+  const [paymentOption, setPaymentOption] = useState<PaymentOptionType>('' as PaymentOptionType)
   const { updateDeliveryInformation } = useContext(CoffeContext)
   const { register, handleSubmit } = useForm()
   const navigate = useNavigate()
@@ -34,7 +42,7 @@ export function CheckoutForm() {
 
   const submitDeliveryAddress = (data: any) => {
     if (paymentOption) {
-      updateDeliveryInformation({ payment: paymentOption, ...data })
+      updateDeliveryInformation({ payment: PaymentMap[paymentOption], ...data })
       navigate('/feedback')
     }
   }
