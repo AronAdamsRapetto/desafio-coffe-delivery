@@ -1,4 +1,4 @@
-import { ReactNode, createContext, useState } from 'react'
+import { ReactNode, createContext, useEffect, useState } from 'react'
 
 interface ContextProviderProps {
   children: ReactNode
@@ -34,7 +34,18 @@ interface CoffeContextType {
 export const CoffeContext = createContext({} as CoffeContextType)
 
 export function CoffeContextProvider({ children }: ContextProviderProps) {
-  const [shoppingCart, setShoppingCart] = useState<CartItem[]>([])
+  const [shoppingCart, setShoppingCart] = useState<CartItem[]>(() => {
+    const storageShoppingCart = JSON.parse(
+      localStorage.getItem('coffe-delivery@shoppingCart-1.0.0') as string,
+    )
+
+    if (!storageShoppingCart) {
+      return []
+    }
+
+    return storageShoppingCart
+  })
+
   const [deliveryInfo, setDeliveryInfo] = useState<DeliveryInformations>(
     {} as DeliveryInformations,
   )
@@ -66,14 +77,21 @@ export function CoffeContextProvider({ children }: ContextProviderProps) {
     setDeliveryInfo((_state) => ({ ...newDeliveryInformation }))
   }
 
+  useEffect(() => {
+    localStorage.setItem(
+      'coffe-delivery@shoppingCart-1.0.0',
+      JSON.stringify(shoppingCart),
+    )
+  }, [shoppingCart])
+
   return (
     <CoffeContext.Provider
       value={{
         shoppingCart,
         updateShoppingCart,
+        removeCoffeFromCart,
         deliveryInfo,
         updateDeliveryInformation,
-        removeCoffeFromCart,
       }}
     >
       {children}
